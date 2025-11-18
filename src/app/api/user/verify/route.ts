@@ -10,7 +10,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { email, password } = body;
 
-  
     if (!email || !password) {
       return NextResponse.json(
         { error: "Email and password are required" },
@@ -18,7 +17,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-   
     const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json(
@@ -27,7 +25,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
- 
     const isPasswordValid = await argon2.verify(user.password, password);
     if (!isPasswordValid) {
       return NextResponse.json(
@@ -36,7 +33,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-   
     return NextResponse.json(
       {
         userId: user._id.toString(),
@@ -52,4 +48,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-

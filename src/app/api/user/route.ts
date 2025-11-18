@@ -8,12 +8,21 @@ export async function POST(request: NextRequest) {
     await connectToDb();
 
     const body = await request.json();
-    const { fullName, email, password, admin } = body;
+    const { fullName, email, password, confirmPassword, admin } = body;
 
     // making sure all fields are inputed
-    if (!fullName || !email || !password) {
+    if (!fullName || !email || !password || !confirmPassword) {
       return NextResponse.json(
-        { error: "Missing required fields: fullName, email, and password are required" },
+        {
+          error:
+            "Missing required fields: fullName, email, and password are required",
+        },
+        { status: 400 }
+      );
+    }
+    if (password !== confirmPassword) {
+      return NextResponse.json(
+        { error: "Passwords do not match" },
         { status: 400 }
       );
     }
@@ -26,8 +35,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
-
 
     // argon2 hash
     const hashedPassword = await argon2.hash(password);
@@ -48,7 +55,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (error: any) {
     console.error("Error creating user:", error);
-    
+
     // Handle duplicate key error (MongoDB unique constraint)
     if (error.code === 11000) {
       return NextResponse.json(
@@ -63,4 +70,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
