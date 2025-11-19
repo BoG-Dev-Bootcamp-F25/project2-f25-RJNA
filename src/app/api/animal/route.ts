@@ -115,24 +115,3 @@ export async function PATCH(request: NextRequest) {
     );
   }
 }
-
-export async function GET(request: NextRequest) {
-  try {
-    await connectToDb();
-    const auth = await getUserFromToken();
-    if (!auth) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    // find all animals allocated to user
-    const animals = await Animal.find({ userId: auth.userId });
-
-    return NextResponse.json(animals, { status: 200 });
-  } catch (error) {
-    console.error("Error fetching animals:", error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
-}
