@@ -21,12 +21,9 @@ const animalSchema = new Schema(
 		},
 		imageUrl: {
 			type: String,
-			required: false,
+			required: true,
 		},
 	},
-	{
-		timestamps: true,
-	}
 );
 
 export default mongoose.models?.Animal ||
