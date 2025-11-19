@@ -191,3 +191,24 @@ export async function PATCH(request: NextRequest) {
 		);
 	}
 }
+
+export async function GET(request: NextRequest) {
+	try {
+		await connectToDb();
+
+		const user = await getUserFromToken();
+		if (!user) {
+			return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+		}
+
+		const trainingLogs = await Training.find({ userId: user.userId });
+
+		return NextResponse.json(trainingLogs, { status: 200 });
+	} catch (error) {
+		console.error("Error fetching Training Logs:", error);
+		return NextResponse.json(
+			{ error: "Failed to fetch training logs" },
+			{ status: 500 }
+		);
+	}
+}

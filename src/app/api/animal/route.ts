@@ -115,3 +115,24 @@ export async function PATCH(request: NextRequest) {
     );
   }
 }
+
+export async function GET(request: NextRequest) {
+	try {
+		await connectToDb();
+
+		const user = await getUserFromToken();
+		if (!user) {
+			return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+		}
+
+		const animals = await Animal.find({ userId: user.userId });
+
+		return NextResponse.json(animals, { status: 200 });
+	} catch (error) {
+		console.error("Error fetching animals:", error);
+		return NextResponse.json(
+			{ error: "Failed to fetch animals" },
+			{ status: 500 }
+		);
+	}
+}
