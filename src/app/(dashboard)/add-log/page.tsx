@@ -82,7 +82,7 @@ export default function AddLogPage() {
           New Training Log
         </h1>
         {error && (
-          <p className="text-red-500 text-sm text-center mb-4">{error}</p>
+          <p className="text-red-600 text-sm text-center mb-4">{error}</p>
         )}
         <form onSubmit={handleSubmit}>
           <div className="mb-6">

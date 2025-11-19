@@ -6,7 +6,7 @@ const TopNavigation = () => (
   <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 shrink-0 z-20">
     {/* Logo Section */}
     <div className="flex items-center gap-3">
-      <div className="w-8 h-8 bg-[#E84E33] rounded-lg flex items-center justify-center text-white">
+      <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -23,7 +23,7 @@ const TopNavigation = () => (
     </div>
 
     {/* Search Bar */}
-    <div className="relative w-96">
+    {/* <div className="relative w-96">
       <input
         type="text"
         placeholder="Search"
@@ -43,7 +43,7 @@ const TopNavigation = () => (
           d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
         />
       </svg>
-    </div>
+    </div> */}
   </header>
 );
 

@@ -5,8 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 
-// --- Icons ---
-// Using solid icons for active states
 const TrainingIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

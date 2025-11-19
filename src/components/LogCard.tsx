@@ -62,7 +62,7 @@ const LogCard: React.FC<LogCardProps> = ({
         {/* Edit Button */}
         <button
           onClick={onEdit}
-          className="w-10 h-10 rounded-full bg-[#C92A2A] text-white flex items-center justify-center hover:bg-red-700 transition-colors shrink-0 absolute right-4 top-1/2 -translate-y-1/2 shadow-sm"
+          className="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors shrink-0 absolute right-4 top-1/2 -translate-y-1/2 shadow-sm"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
